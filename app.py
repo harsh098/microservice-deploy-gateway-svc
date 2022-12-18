@@ -14,9 +14,17 @@ fs = gridfs.GridFS(mongo.db)
 connection = pika.BlockingConnection(pika.ConnectionParameters("rabbitmq"))
 channel = connection.channel()
 
-@app.route("login", methods=['POST'])
+@app.route("/login", methods=['POST'])
 def login():
     token, err = access.login(request)
 
+    if not err:
+        return token
+    else:
+        return err
+
+@app.route("/upload", methods=["POST"])
+def upload():
+    access, err = validate.token(request)
 if __name__ == '__main__':
     app.run()
