@@ -3,7 +3,7 @@ import os, gridfs, pika, json
 from flask_pymongo import PyMongo
 from auth import validate
 from auth_svc import access
-from storageAPI  import utililty
+from storageAPI import utility
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://host.minikube.internal:27017/videos"
